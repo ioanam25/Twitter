@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,22 +12,51 @@
 <!--    android:layout_width="match_parent"-->
 <!--    android:layout_height="match_parent"-->
 <!--    tools:context=".TimelineActivity">-->
+<!--    <ProgressBar xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        style="?android:attr/progressBarStyleLarge"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/pbProgressAction" />-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTweets"
-        android:layout_width="0dp"
-        android:layout_height="743dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <item-->
+<!--        android:id="@+id/miActionProgress"-->
+<!--        android:title="Loading..."-->
+<!--        android:visible="false"-->
+<!--        android:orderInCategory="100"-->
+<!--        app:showAsAction="always"-->
+<!--        app:actionLayout="@layout/action_view_progress" />-->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_container">
 
-    <Button
-        android:id="@+id/btnLogout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTweets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:onClick="onLogoutButton"
-        app:layout_constraintEnd_toEndOf="@+id/rvTweets"
-        app:layout_constraintTop_toTopOf="@+id/rvTweets" />
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_anchorGravity="bottom|right|end" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btnLogout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:foregroundGravity="center"-->
+<!--        android:text="Logout"-->
+<!--        android:onClick="onLogoutButton"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/rvTweets"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/rvTweets" />-->
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
