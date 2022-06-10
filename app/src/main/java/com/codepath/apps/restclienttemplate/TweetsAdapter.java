@@ -72,6 +72,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ConstraintLayout constraintLayout;
         TextView tvFavoriteCount;
         ImageButton ibFavorite;
+        ImageButton ibReply;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +84,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             constraintLayout = itemView.findViewById(R.id.cL);
             tvFavoriteCount = itemView.findViewById(R.id.tvFavoriteCount);
             ibFavorite = itemView.findViewById(R.id.ibFavorite);
+            ibReply = itemView.findViewById(R.id.ibReply);
         }
 
         public void bind(Tweet tweet) {
@@ -156,6 +158,19 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                         tweet.favoriteCount--;
                         tvFavoriteCount.setText(String.valueOf(tweet.favoriteCount));
                     }
+                }
+            });
+
+            ibReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // pop up a compose tweet but it's gonna have an extra attribute
+                        // extra attribute "in_reply_to_status_id"
+                    Intent i = new Intent(context, ComposeActivity.class);
+                    i.putExtra("should_reply_to_tweet", true);
+                    i.putExtra("id_of_tweet_to_reply_to", tweet.id);
+                    i.putExtra("screenname_of_tweet_to_reply_to", tweet.user.screenName);
+                    context.startActivity(i);
                 }
             });
         }
