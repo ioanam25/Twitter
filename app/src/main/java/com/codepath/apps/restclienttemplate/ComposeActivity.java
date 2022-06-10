@@ -1,8 +1,10 @@
 package com.codepath.apps.restclienttemplate;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,6 +55,7 @@ public class ComposeActivity extends AppCompatActivity {
             Toast.makeText(ComposeActivity.this, tweetContent, Toast.LENGTH_LONG).show();
             // make api call to twitter to publish the tweet
             client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onSuccess(int statusCode, Headers headers, JSON json) {
                     Log.i(TAG, "onSuccess to publish tweet");

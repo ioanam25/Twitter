@@ -25,13 +25,25 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String tweetUrl;
+    public boolean isFavorited;
+    public boolean isRetweeted;
+    public int favoriteCount;
+    public int retweetedCount;
+
     // empty constructor for parceler library
     public Tweet(){}
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
+        if (jsonObject.has("retweeted_status")) {
+            return null;
+        }
         Tweet tweet = new Tweet();
         tweet.id = jsonObject.getString("id");
+        tweet.isFavorited = jsonObject.getBoolean("favorited");
+        tweet.isRetweeted = jsonObject.getBoolean("retweeted");
+        tweet.favoriteCount = jsonObject.getInt("favorite_count");
+        tweet.retweetedCount = jsonObject.getInt("retweet_count");
         if(jsonObject.has("full_text")) {
             tweet.body = jsonObject.getString("full_text");
         } else {
@@ -55,7 +67,9 @@ public class Tweet {
     public static List<Tweet> fromJsonArray(JSONArray jsonArray) throws JSONException {
         List<Tweet> tweets = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
-            tweets.add(fromJson(jsonArray.getJSONObject(i)));
+            Tweet newTweet = fromJson(jsonArray.getJSONObject(i));
+            if (newTweet != null)
+                tweets.add(newTweet);
         }
         return tweets;
     }
