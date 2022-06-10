@@ -177,7 +177,7 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void populateHomeTimeline(String maxId) {
-        client.getHomeTimeline(maxId, new JsonHttpResponseHandler() {
+        client.getHomeTimeline(maxId, new JsonHttpResponseHandler() { // async thread
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {

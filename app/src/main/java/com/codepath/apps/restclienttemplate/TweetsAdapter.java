@@ -83,6 +83,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 Glide.with(context).load(tweet.tweetUrl).into(ivMedia);
                 ivMedia.setVisibility(View.VISIBLE);
             }
+            else ivMedia.setVisibility(View.GONE);
 
             constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
