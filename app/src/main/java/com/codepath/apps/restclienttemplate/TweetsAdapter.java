@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import static android.R.drawable.btn_star_big_on;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -170,7 +171,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     i.putExtra("should_reply_to_tweet", true);
                     i.putExtra("id_of_tweet_to_reply_to", tweet.id);
                     i.putExtra("screenname_of_tweet_to_reply_to", tweet.user.screenName);
-                    context.startActivity(i);
+                    // context.startActivity(i);
+                    ((Activity) context).startActivityForResult(i, TimelineActivity.REQUEST_CODE);
                 }
             });
         }
