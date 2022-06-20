@@ -167,12 +167,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 public void onClick(View view) {
                     // pop up a compose tweet but it's gonna have an extra attribute
                         // extra attribute "in_reply_to_status_id"
-                    Intent i = new Intent(context, ComposeActivity.class);
-                    i.putExtra("should_reply_to_tweet", true);
-                    i.putExtra("id_of_tweet_to_reply_to", tweet.id);
-                    i.putExtra("screenname_of_tweet_to_reply_to", tweet.user.screenName);
+                    Intent intent = new Intent(context, ComposeActivity.class);
+                    intent.putExtra("should_reply_to_tweet", true);
+                    intent.putExtra("id_of_tweet_to_reply_to", tweet.id);
+                    intent.putExtra("screenname_of_tweet_to_reply_to", tweet.user.screenName);
                     // context.startActivity(i);
-                    ((Activity) context).startActivityForResult(i, TimelineActivity.REQUEST_CODE);
+                    ((Activity) context).startActivityForResult(intent, TimelineActivity.REQUEST_CODE);
                 }
             });
         }

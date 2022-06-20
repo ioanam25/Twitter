@@ -16,6 +16,7 @@ import java.sql.Time;
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
 	SampleModelDao sampleModelDao;
+	public static final String TAG = "LoginActivity";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +48,16 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	// i.e Display application "homepage"
 	@Override
 	public void onLoginSuccess() {
-		Intent i = new Intent(this, TimelineActivity.class);
-		startActivity(i);
-		Log.i("S", "successlogin");
+		Intent intent = new Intent(this, TimelineActivity.class);
+		startActivity(intent);
+		Log.i(TAG, " successful login");
 	}
 
 	// OAuth authentication flow failed, handle the error
 	// i.e Display an error dialog or toast
 	@Override
 	public void onLoginFailure(Exception e) {
-		Log.d("F", "fail");
+		Log.d(TAG, "failed to login");
 		e.printStackTrace();
 	}
 
